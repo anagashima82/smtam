@@ -1,0 +1,426 @@
+/* @theme custom */
+/* このCSSファイルを「custom」という名前のテーマとして登録 */
+/* MD側で theme: custom と指定して使う */
+
+@import 'default';
+/* Marpのデフォルトテーマを読み込んで、その上から上書きする */
+
+/* =========================
+   スライド全体の基本設定
+   =========================
+   MD側：全てのページに適用される
+*/
+section {
+  background-color: #ffffff;        /* 背景色：白 */
+  color: #333333;                   /* 文字色：濃いグレー */
+  font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+  padding: 0 50px 60px 50px;        /* 内側の余白（上 右 下 左）*/
+  justify-content: flex-start;      /* 内容を上寄せにする */
+}
+
+/* スライド下部の赤いバー（フッター背景）*/
+section::before {
+  content: '';
+  position: absolute;
+  bottom: 0;                    /* 下端に配置 */
+  left: 0;
+  right: 0;
+  height: 30px;                 /* バーの高さ */
+  background-color: #CC0000;    /* 赤色 */
+  z-index: 0;
+}
+
+/* =========================
+   見出し1（h1）のスタイル
+   =========================
+   MD側：# で始まる見出し（例：# 1．[タイトル1] 20:00~20:30）
+   主にアジェンダページで使用
+*/
+h1 {
+  color: #CC0000;                      /* 文字色：赤 */
+  border-bottom: 2px solid #CC0000;    /* 下線：2pxの赤線 */
+  padding-bottom: 4px;                 /* 下線と文字の間隔 */
+  margin-top: 0.8em;                   /* 上の余白（見出し同士の間隔）*/
+  margin-bottom: 0.2em;                /* 下の余白（見出しとリストの間隔）*/
+  font-size: 1.4em;                    /* 文字サイズ */
+}
+
+/* =========================
+   見出し2（h2）のスタイル
+   =========================
+   MD側：## で始まる見出し（例：## アジェンダ (1カラム)）
+   各ページの上部にある赤い帯のタイトル
+*/
+h2 {
+  color: #ffffff;                  /* 文字色：白 */
+  background-color: #CC0000;       /* 背景色：赤 */
+  padding: 8px 20px;               /* 内側の余白（上下8px、左右20px）*/
+  margin: 0 -50px 15px -50px;      /* 左右-50pxで画面幅いっぱいに広げる */
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================
+   見出し3（h3）のスタイル
+   =========================
+   MD側：### で始まる見出し
+   左側に赤い縦線を表示
+*/
+h3 {
+  color: #333333;
+  border-left: 5px solid #CC0000;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  background-color: transparent;
+  color: #333333;                   /* 文字色：濃いグレー */
+}
+
+/* h3内の太字（strong）を赤色に */
+h3 strong {
+  color: #CC0000;                   /* 文字色：赤 */
+}
+
+/* =========================
+   段落（p）のスタイル
+   =========================
+   MD側：通常の文章（例：[セクション1の導入文や概要を記載]）
+*/
+section > p,
+section > blockquote {
+  background-color: #FFE5E5;    /* 背景色：ピンク */
+  padding: 20px;                /* 内側の余白 */
+  border-radius: 5px;           /* 角を丸く */
+}
+
+/* =========================
+   リスト（ul, ol）のスタイル
+   =========================
+   MD側：箇条書きリスト（例：- [項目1]）
+   よく調整する値：margin-top（見出しとの間隔）、margin-bottom（下の余白）
+*/
+section > ul,
+section > ol {
+  background-color: #FFE5E5;     /* 背景色：ピンク */
+  padding: 6px 10px 6px 30px;    /* 内側の余白（上 右 下 左）*/
+  border-radius: 5px;            /* 角を丸く */
+  margin-left: 0;
+  margin-top: 0.1em;             /* 上の余白（見出しとの間隔）← よく調整 */
+  margin-bottom: 0.4em;          /* 下の余白 ← よく調整 */
+  list-style-position: outside;  /* 箇条書きマーカーの位置 */
+  font-size: 0.8em;              /* 文字サイズ（80%）*/
+  line-height: 1.3;              /* 行間 */
+}
+
+/* 太字（strong）のスタイル */
+/* MD側：**太字** */
+strong {
+  color: #CC0000;       /* 文字色：赤 */
+  font-weight: bold;
+}
+
+/* ヘッダーを非表示 */
+header {
+  display: none;
+}
+
+/* Marpのデフォルトページネーションを非表示 */
+section[data-marpit-pagination]::after {
+  content: attr(data-marpit-pagination);
+  position: absolute;
+  bottom: 5px;
+  right: 20px;
+  color: #000000;
+  font-size: 0.6em;
+  z-index: 20;
+}
+
+/* =========================
+   フッターのスタイル
+   =========================
+   MD側：footer: "**SAMURAI** __Marp samples__"
+   下部の赤いバーの上に表示される
+*/
+footer {
+  display: flex;
+  justify-content: space-between;  /* 左右に分散配置 */
+  align-items: center;
+  color: #ffffff;                  /* 文字色：白 */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  font-size: 0.45em;               /* フォントサイズを半分に */
+  position: absolute;              /* 絶対配置 */
+  bottom: 0;                       /* 下端に配置 */
+  left: 0;
+  right: 0;
+  z-index: 10;                     /* 赤いバーの上に表示 */
+}
+
+/* コードのスタイル */
+/* MD側：`コード` */
+code {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+/* テーブルのスタイル */
+table {
+  background-color: #ffffff;
+  border-collapse: collapse;    /* 枠線を統合 */
+  font-size: 0.8em;             /* フォントサイズを20%小さく（100% → 80%） */
+}
+
+table th {
+  background-color: #CC0000;    /* ヘッダー：赤 */
+  color: #ffffff;
+}
+
+/* 奇数行：白 */
+table tbody tr:nth-child(odd) td {
+  background-color: #ffffff;
+}
+
+/* 偶数行：グレー */
+table tbody tr:nth-child(even) td {
+  background-color: #f5f5f5;
+}
+
+/* =========================
+   2カラムレイアウト
+   =========================
+   MD側：<div class="flex sa">...</div>
+   左右2列に分けるレイアウト
+*/
+:root {
+  --fw: 1;
+}
+
+.flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* 2列に分割（1:1）*/
+  gap: 2em;                        /* 列の間隔 ← 調整可能 */
+  width: 100%;
+}
+
+/* 間隔のバリエーション */
+.flex.sa {
+  gap: 3em;  /* 広い間隔 */
+}
+
+.flex.sb {
+  gap: 1em;  /* 狭い間隔 */
+}
+
+.flex.fw {
+  grid-template-columns: var(--fw) var(--fw);
+}
+
+.flex > div {
+  min-width: 0;
+}
+
+/* 2カラム内の見出し3（h3）*/
+/* MD側：### [左カラムのタイトル] */
+.flex > div h3 {
+  color: #333333;
+  border-left: 5px solid #CC0000;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  background-color: transparent;
+}
+
+/* 2カラム内のリスト */
+.flex > div ul {
+  background-color: #FFE5E5;
+  padding: 15px 15px 15px 40px;
+  border-radius: 5px;
+  margin-left: 0;
+}
+
+/* 2カラム内の段落 */
+.flex > div p {
+  background-color: #FFE5E5;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* =========================
+   3カラムレイアウト
+   =========================
+   MD側：<div class="flex-3col">...</div>
+   左・中・右の3列に分けるレイアウト
+*/
+.flex-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;  /* 3列に分割（1:1:1）*/
+  gap: 2em;                            /* 列の間隔 ← 調整可能 */
+  width: 100%;
+  padding-top: 1.5em;                  /* 上部にパディング追加 */
+}
+
+.flex-3col > div {
+  min-width: 0;
+}
+
+/* 3カラム内の見出し3（h3）*/
+.flex-3col > div h3 {
+  color: #333333;
+  border-left: 5px solid #CC0000;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  background-color: transparent;
+}
+
+/* 3カラム内のリスト */
+.flex-3col > div ul {
+  background-color: #FFE5E5;
+  padding: 15px 15px 15px 40px;
+  border-radius: 5px;
+  margin-left: 0;
+}
+
+/* 3カラム内の段落 */
+.flex-3col > div p {
+  background-color: #FFE5E5;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* =========================
+   画像配置スライド用
+   =========================
+   MD側：<!-- _class: image-slide -->
+   画像がメインのスライドで、背景色を消す
+*/
+section.image-slide > p,
+section.image-slide > ul,
+section.image-slide > ol {
+  background-color: transparent;  /* 背景なし */
+  padding: 0;
+}
+
+section.image-slide img {
+  background-color: transparent;
+}
+
+/* 背景色なしクラス */
+/* MD側：<div class="no-bg">...</div> */
+.no-bg,
+.no-bg p,
+.no-bg ul,
+.no-bg ol {
+  background-color: transparent !important;  /* 背景なし */
+  padding: 0 !important;
+}
+
+/* 画像中央寄せクラス */
+/* MD側：<div class="image-center">...</div> */
+.image-center {
+  display: flex;
+  justify-content: center;       /* 左右中央寄せ */
+  align-items: center;            /* 上下中央寄せ */
+  background-color: transparent !important;
+  padding-top: 10 !important;  /* 上部にパディング */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
+  height: 65%;                   /* 親要素の高さいっぱいに */
+  flex: 0;                        /* 残りのスペースを占有 */
+}
+
+.image-center p {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-center img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* =========================
+   title-top クラス（重要！）
+   =========================
+   MD側：<!-- _class: title-top -->
+   h2を上部に固定配置するスライド（アジェンダページなど）
+*/
+
+/* h2を上部に固定配置 */
+section.title-top h2 {
+  position: absolute;  /* 絶対配置 */
+  top: 0;              /* 上端に配置 */
+  left: 0;
+  right: 0;
+  margin: 0;
+  width: 100%;
+  padding: 8px 20px;
+}
+
+/* h2以外の要素（h1, ul, pなど）の上余白 */
+/* これでh2の下にスペースを作る */
+section.title-top > :not(h2) {
+  margin-top: 20px;  /* 上の余白 ← 調整可能 */
+}
+
+/* 最初のh1だけ特別に余白を大きく */
+/* h2と重ならないようにするため */
+section.title-top h1:first-of-type {
+  margin-top: 80px !important;  /* 最初の見出しの上余白 ← よく調整 */
+}
+
+/* =========================
+   チャレンジ問題用の青色ヘッダー
+   =========================
+   MD側：<!-- _class: title-top challenge -->
+   チャレンジ問題のスライドで青色のヘッダーを使用
+*/
+section.title-top.challenge h2 {
+  background-color: #0066CC;       /* 背景色：青 */
+  color: #ffffff;                  /* 文字色：白 */
+}
+
+/* チャレンジ問題用のスライド下部の青いバー */
+section.title-top.challenge::before {
+  background-color: #0066CC;       /* 青色 */
+}
+
+/* チャレンジ問題用のフッター色 */
+section.title-top.challenge footer {
+  color: #ffffff;                  /* 文字色：白（青いバーの上）*/
+}
+
+/* ========================================
+   よく調整する値のまとめ
+   ========================================
+
+   【アジェンダページの余白調整】
+   - 最初の見出しの上余白：300行目 margin-top: 80px
+   - 全体の上部余白：294行目 margin-top: 20px
+   - 見出し同士の間隔：43行目 margin-top: 0.8em
+   - 見出しとリストの間隔：44行目 margin-bottom: 0.2em
+   - リストの上余白：87行目 margin-top: 0.1em
+
+   【レイアウトの列間隔】
+   - 2カラムの間隔：167行目 gap: 2em
+   - 3カラムの間隔：223行目 gap: 2em
+
+   【色の変更】
+   - メインカラー（赤）：#CC0000
+   - 背景色（ピンク）：#FFE5E5
+   - チャレンジ問題用（青）：#0066CC
+
+   【単位の説明】
+   - px：ピクセル（絶対値）例：20px
+   - em：文字サイズ基準（相対値）例：0.8em = 文字サイズの80%
+   - fr：グリッド分割（相対値）例：1fr 1fr = 半分ずつ
+======================================== */
