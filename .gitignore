@@ -9,3 +9,10 @@ node_modules/
 
 # Claude cache
 .claude/
+
+# Generated outputs (can be regenerated with Marp CLI)
+*_output.pdf
+*_output.pptx
+*_output.html
+chapters_pdf/
+python/chapters/
